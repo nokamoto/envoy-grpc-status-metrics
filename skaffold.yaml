@@ -1,0 +1,20 @@
+apiVersion: skaffold/v2beta6
+kind: Config
+metadata:
+  name: envoy-grpc-status-metrics
+build:
+  artifacts:
+  - image: server
+    buildpacks:
+      builder: gcr.io/buildpacks/builder:v1
+      env:
+      - GOOGLE_BUILDABLE=./cmd/server
+deploy:
+  kustomize:
+    paths:
+    - deployments
+portForward:
+- resourceType: Deployment
+  resourceName: server
+  port: 9000
+  localPort: 9000

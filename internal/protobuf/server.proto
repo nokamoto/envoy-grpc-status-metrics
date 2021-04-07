@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option go_package = "github.com/nokamoto/envoy-grpc-status-metrics/internal/protobuf";
+
+message Value {
+    int32 status = 1;
+}
+
+service Server {
+    rpc Say(Value) returns (Value);
+}
