@@ -7,6 +7,7 @@ import (
 
 	pb "github.com/nokamoto/envoy-grpc-status-metrics/internal/protobuf"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/codes"
 )
 
 func main() {
@@ -21,9 +22,10 @@ func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 
-	res, err := c.Say(ctx, &pb.Value{})
-	if err != nil {
-		log.Fatalf("could not say: %v", err)
+	for _, code := range []codes.Code{codes.OK, codes.AlreadyExists, codes.Internal, codes.InvalidArgument} {
+		res, err := c.Say(ctx, &pb.Value{
+			Status: int32(code),
+		})
+		log.Printf("res=%v, err=%v\n", res, err)
 	}
-	log.Printf("Say: %v", res)
 }
