@@ -11,7 +11,7 @@ import (
 )
 
 func main() {
-	address := "localhost:9000"
+	address := "localhost:9001"
 	conn, err := grpc.Dial(address, grpc.WithInsecure(), grpc.WithBlock())
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)

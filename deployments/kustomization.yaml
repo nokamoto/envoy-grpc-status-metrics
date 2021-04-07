@@ -1,2 +1,7 @@
 resources:
 - server.yaml
+- envoy.yaml
+configMapGenerator:
+- name: envoy-conf
+  files:
+  - envoy-conf.yaml

@@ -9,12 +9,20 @@ build:
       builder: gcr.io/buildpacks/builder:v1
       env:
       - GOOGLE_BUILDABLE=./cmd/server
+      dependencies:
+        paths:
+        - cmd/server/**
+        - internal/**
 deploy:
   kustomize:
     paths:
     - deployments
 portForward:
 - resourceType: Deployment
-  resourceName: server
-  port: 9000
-  localPort: 9000
+  resourceName: envoy
+  port: 9001
+  localPort: 9001
+- resourceType: Deployment
+  resourceName: envoy
+  port: 9901
+  localPort: 9901
