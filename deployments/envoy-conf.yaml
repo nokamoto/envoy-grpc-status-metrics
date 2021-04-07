@@ -29,6 +29,7 @@ static_resources:
                 route:
                   cluster: backend_service
           http_filters:
+          - name: envoy.filters.http.grpc_stats
           - name: envoy.filters.http.router
             typed_config: {}
   clusters:

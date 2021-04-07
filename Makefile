@@ -10,3 +10,13 @@ all:
 	go fmt ./...
 	go test ./...
 	go mod tidy
+
+stats:
+	@curl http://localhost:9901/ready || (echo error: run [skaffold dev --port-forward] && false)
+	go run ./cmd/client
+	curl -s http://localhost:9901/stats | grep Say
+
+prom:
+	@curl http://localhost:9901/ready || (echo error: run [skaffold dev --port-forward] && false)
+	go run ./cmd/client
+	curl -s http://localhost:9901/stats/prometheus | grep Say
