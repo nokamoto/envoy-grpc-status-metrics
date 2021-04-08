@@ -1,6 +1,7 @@
 # envoy-grpc-status-metrics
 
 ```bash
+$ make datadog DATADOG_API_KEY=<YOUR-DATADOG-API-KEY> # (optional) datadog-cluster-agent
 $ skaffold dev --port-forward
 ```
 
