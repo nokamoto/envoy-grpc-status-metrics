@@ -20,3 +20,7 @@ prom:
 	@curl http://localhost:9901/ready || (echo error: run [skaffold dev --port-forward] && false)
 	go run ./cmd/client
 	curl -s http://localhost:9901/stats/prometheus | grep Say
+
+datadog:
+	@kubectl config current-context | grep docker-desktop
+	helm install datadog -f deployments/helm-datadog-values.yaml  --set datadog.apiKey=${DATADOG_API_KEY} datadog/datadog
