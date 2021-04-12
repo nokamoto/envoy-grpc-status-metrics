@@ -1,5 +1,5 @@
 tasks:
-- init: apt install -y protobuf-compiler
+- init: sudo apt install -y protobuf-compiler
 
 github:
   prebuilds:
