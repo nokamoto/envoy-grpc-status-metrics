@@ -1,3 +1,6 @@
+tasks:
+- init: apt install -y protobuf-compiler
+
 github:
   prebuilds:
     addBadge: true
